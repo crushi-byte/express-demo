@@ -38,7 +38,6 @@ function failure(res, error) {
       errors,
     });
   }
-
   if (error.name === "NotFoundError") {
     return res.status(404).json({
       status: false,

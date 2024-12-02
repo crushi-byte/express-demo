@@ -4,7 +4,7 @@ const { Article } = require("../../models");
 const { Op } = require("sequelize");
 const { NotFoundError, success, failure } = require("../../utils/response");
 /**
- * 查询所有文章列表
+ * 查询文章列表
  * GET /admin/articles
  */
 router.get("/", async function (req, res, next) {
@@ -60,7 +60,7 @@ router.post("/", async function (req, res, next) {
  */
 router.delete("/:id", async function (req, res, next) {
   try {
-    const article = await Article.getArticle(req);
+    const article = await getArticle(req);
     await article.destroy();
     success(res, "文章删除成功");
   } catch (error) {
@@ -73,7 +73,7 @@ router.delete("/:id", async function (req, res, next) {
  */
 router.put("/:id", async function (req, res, next) {
   try {
-    const article = await Article.getArticle(req);
+    const article = await getArticle(req);
     const body = filterBody(req);
     await article.update(body);
     success(res, "文章更新成功", { article });
