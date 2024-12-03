@@ -5,6 +5,7 @@ const logger = require("morgan");
 require("dotenv").config();
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const cors = require("cors");
 // 后台文章路由
 const adminArticlesRouter = require("./routes/admin/articles");
 // 后台分类路由

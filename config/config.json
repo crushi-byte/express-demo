@@ -17,8 +17,8 @@
   },
   "production": {
     "username": "root",
-    "password": null,
-    "database": "clwy_api_production",
+    "password": "b8e61ad04cffb5f9",
+    "database": "clwy_api_development",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "timezone": "+08:00"
