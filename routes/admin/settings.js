@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { Setting } = require("../../models");
 const { NotFoundError, success, failure } = require("../../utils/response");
-const { copy } = require("./categories");
 /**
  * 查询系统设置详情
  * GET /admin/settings
@@ -19,12 +18,12 @@ router.get("/", async function (req, res, next) {
  * 更新系统设置
  * PUT /admin/settings
  */
-router.put("/:id", async function (req, res, next) {
+router.put("/", async function (req, res, next) {
   try {
-    const article = await getSetting(req);
+    const setting = await getSetting(req);
     const body = filterBody(req);
-    await article.update(body);
-    success(res, "系统设置更新成功", { article });
+    await setting.update(body);
+    success(res, "系统设置更新成功", { setting });
   } catch (error) {
     failure(res, error);
   }

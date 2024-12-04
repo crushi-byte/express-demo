@@ -35,8 +35,8 @@ router.get("/", async function (req, res, next) {
  */
 router.get("/:id", async function (req, res, next) {
   try {
-    const article = await getcategories(req);
-    success(res, "查询分类详情成功", { article });
+    const categori = await getcategories(req);
+    success(res, "查询分类详情成功", { categori });
   } catch (error) {
     failure(res, error);
   }
@@ -48,8 +48,8 @@ router.get("/:id", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   try {
     const body = filterBody(req);
-    const article = await Category.create(body);
-    success(res, "分类创建成功", { article }, 201);
+    const categori = await Category.create(body);
+    success(res, "分类创建成功", { categori }, 201);
   } catch (error) {
     failure(res, error);
   }
@@ -60,8 +60,8 @@ router.post("/", async function (req, res, next) {
  */
 router.delete("/:id", async function (req, res, next) {
   try {
-    const article = await getcategories(req);
-    await article.destroy();
+    const categori = await getcategories(req);
+    await categori.destroy();
     success(res, "分类删除成功");
   } catch (error) {
     failure(res, error);
@@ -73,10 +73,10 @@ router.delete("/:id", async function (req, res, next) {
  */
 router.put("/:id", async function (req, res, next) {
   try {
-    const article = await getcategories(req);
+    const categori = await getcategories(req);
     const body = filterBody(req);
-    await article.update(body);
-    success(res, "分类更新成功", { article });
+    await categori.update(body);
+    success(res, "分类更新成功", { categori });
   } catch (error) {
     failure(res, error);
   }
@@ -93,13 +93,13 @@ function filterBody(req) {
  */
 async function getcategories(req) {
   const { id } = req.params;
-  const article = await Category.findByPk(id);
+  const categori = await Category.findByPk(id);
 
-  if (!article) {
+  if (!categori) {
     throw new NotFoundError(`ID${id}'分类不存在'`);
   }
 
-  return article;
+  return categori;
 }
 
 module.exports = router;
